@@ -1,15 +1,26 @@
 import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
+import cors from 'cors';
+import { run } from './server/mongodb';
 
 dotenv.config();
 
 const app: Express = express();
-const port = process.env.PORT;
+app.use(
+  cors({
+    origin: 'http://localhost:8081',
+  })
+);
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.get('/', (req: Request, res: Response) => {
-  res.send('Express + TypeScript Server');
+const PORT = process.env.PORT;
+
+app.get('/', (req, res) => {
+  run();
+  res.json({ message: 'Welcome to bezkoder application.' });
 });
 
-app.listen(port, () => {
-  console.log(`⚡️[server]: Server is running at https://localhost:${port}`);
+app.listen(PORT, () => {
+  console.log(`⚡️[server]: Server is running at https://localhost:${PORT}`);
 });
