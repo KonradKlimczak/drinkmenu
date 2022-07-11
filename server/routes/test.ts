@@ -1,7 +1,6 @@
 import { Router } from 'express';
 import { isAdmin, verifyToken } from '../authJwt';
 import { adminBoard, allAccess, userBoard } from '../controllers/test';
-import { signup } from '../controllers/user';
 
 const router = Router();
 
