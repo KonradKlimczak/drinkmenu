@@ -1,7 +1,7 @@
 import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import { run } from './server/mongodb';
+import { userRoutes } from './server/routes/user';
 
 dotenv.config();
 
@@ -16,8 +16,9 @@ app.use(express.urlencoded({ extended: true }));
 
 const PORT = process.env.PORT;
 
-app.get('/', (req, res) => {
-  run();
+app.use('/user', userRoutes);
+
+app.get('/', (req, res, next) => {
   res.json({ message: 'Welcome to bezkoder application.' });
 });
 

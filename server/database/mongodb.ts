@@ -11,11 +11,10 @@ const client = new MongoClient(uri, {
   serverApi: ServerApiVersion.v1,
 });
 
-export const run = () => {
-  client.connect(async (err) => {
-    const collection = client.db('drink-page').collection('cocktail');
-    const coctail = await collection.findOne({ name: 'Test' });
-    console.log(coctail);
-    client.close();
-  });
+export const connect = () => {
+  return client.connect().then(() => client.db('drink-page'));
+};
+
+export const disconnect = () => {
+  return client.close();
 };
