@@ -6,13 +6,15 @@ import {
   UNAUTHORIZED,
 } from 'http-status';
 import dotenv from 'dotenv';
+
+import { Role, UserOutput } from '../../../common';
+
 dotenv.config();
 
 const JWT_SECRET = process.env.JWT_SECRET!;
 
 import { compareSync, hashSync } from 'bcrypt';
 import { UserCollection } from '../database/user';
-import { Role } from '../../../types';
 import { sign } from 'jsonwebtoken';
 
 export const signup = async (req: Request, res: Response) => {
@@ -44,7 +46,7 @@ export const signup = async (req: Request, res: Response) => {
 export const signin = async (req: Request, res: Response) => {
   try {
     const collection = await UserCollection();
-    const user = await collection.findOne({ username: req.body.username });
+    const user = await collection.findOne({ email: req.body.email });
 
     if (!user) {
       return res.status(NOT_FOUND).send({ message: 'User Not found.' });
@@ -62,13 +64,15 @@ export const signin = async (req: Request, res: Response) => {
     var token = sign({ id: user._id }, JWT_SECRET, {
       expiresIn: 86400, // 24 hours
     });
-    res.status(200).send({
+    const output: UserOutput = {
       id: user._id,
       username: user.username,
       email: user.email,
       role: user.role,
       accessToken: token,
-    });
+    };
+
+    res.status(200).send(output);
   } catch (error: any) {
     return res
       .status(INTERNAL_SERVER_ERROR)

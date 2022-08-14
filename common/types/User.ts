@@ -1,3 +1,5 @@
+import { ObjectId } from 'mongodb';
+
 export enum Role {
   User = 'USER',
   Admin = 'ADMIN',
@@ -10,3 +12,11 @@ export interface IUser {
   password: string;
   role: Role;
 }
+
+export type UserOutput = {
+  id: ObjectId;
+  accessToken: string;
+  username: string;
+  email: string;
+  role: Role;
+};

@@ -1,0 +1,16 @@
+{
+  "name": "drinkmenu-common",
+  "version": "1.0.0",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KonradKlimczak/drinkmenu.git"
+  },
+  "bugs": {
+    "url": "https://github.com/KonradKlimczak/drinkmenu/issues"
+  },
+  "homepage": "https://github.com/KonradKlimczak/drinkmenu#readme",
+  "devDependencies": {
+    "@types/mongodb": "^4.0.7"
+  }
+}

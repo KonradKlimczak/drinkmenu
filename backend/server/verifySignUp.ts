@@ -6,6 +6,7 @@ export const checkDuplicateUsernameOrEmail = async (
   res: Response,
   next: NextFunction
 ) => {
+  console.log('checkDuplicateUsernameOrEmail');
   try {
     const collection = await UserCollection();
     const username = await collection.findOne({

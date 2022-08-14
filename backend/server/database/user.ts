@@ -1,4 +1,5 @@
-import { IUser } from '../../../types';
+import { IUser } from '../../../common';
+
 import { connect } from './mongodb';
 
 export const UserCollection = () => {
