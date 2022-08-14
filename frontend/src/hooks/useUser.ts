@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 
-import { UserOutput } from '../../../../common';
+import { UserOutput } from '../../../common';
 
 type UseUserReturnType = {
   user?: UserOutput;

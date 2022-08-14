@@ -12,7 +12,10 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import axios from 'axios';
-import { useUser } from '../hooks/useUser';
+import { useUser } from '../../hooks/useUser';
+
+const BASE_URL =
+  process.env.NODE_ENV !== 'production' ? 'http://localhost:8000' : '';
 
 function Copyright(props: any) {
   return (
@@ -39,7 +42,7 @@ export const SignIn = () => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     axios
-      .post('http://localhost:8000/auth/signin', {
+      .post(`${BASE_URL}/auth/signin`, {
         email: data.get('email'),
         password: data.get('password'),
       })
