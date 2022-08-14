@@ -12,7 +12,7 @@ const JWT_SECRET = process.env.JWT_SECRET!;
 
 import { compareSync, hashSync } from 'bcrypt';
 import { UserCollection } from '../database/user';
-import { Role } from '../../types';
+import { Role } from '../../../types';
 import { sign } from 'jsonwebtoken';
 
 export const signup = async (req: Request, res: Response) => {

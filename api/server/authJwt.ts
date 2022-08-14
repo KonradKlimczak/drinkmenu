@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import { verify } from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import { UserCollection } from './database/user';
-import { Role } from '../types';
+import { Role } from '../../types';
 import { ObjectId } from 'mongodb';
 dotenv.config();
 

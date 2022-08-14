@@ -1,7 +1,8 @@
-import express, { Express, Request, Response } from 'express';
+import express, { Express } from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import { authRoutes } from './server/routes/auth';
+import { userRoutes } from './server/routes/test';
 
 dotenv.config();
 
@@ -16,6 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 
 const PORT = process.env.PORT;
 
+app.use('/user', userRoutes);
 app.use('/auth', authRoutes);
 
 app.get('/', (req, res, next) => {
