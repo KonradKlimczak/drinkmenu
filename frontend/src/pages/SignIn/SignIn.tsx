@@ -13,9 +13,10 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import axios from 'axios';
 import { useUser } from '../../hooks/useUser';
+import { useNavigate } from 'react-router-dom';
 
 const BASE_URL =
-  process.env.NODE_ENV !== 'production' ? 'http://localhost:8000' : '';
+  process.env.NODE_ENV !== 'production' ? 'http://localhost:8080' : '';
 
 function Copyright(props: any) {
   return (
@@ -37,6 +38,7 @@ function Copyright(props: any) {
 
 export const SignIn = () => {
   const { login } = useUser();
+  const navigate = useNavigate();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -48,6 +50,7 @@ export const SignIn = () => {
       })
       .then((response) => {
         login(response.data);
+        navigate('/');
       });
   };
 
